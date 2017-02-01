@@ -1,0 +1,23 @@
+import re
+import string
+import random
+from random import randint
+
+text_file=open('testfile.txt', 'w')
+
+chars = string.ascii_letters + string.digits + string.punctuation
+ListSize = 0
+while ListSize < 30:
+    StringSize = randint(30,50)
+    text_file.write("Test case " + str(ListSize) + ": ")
+    s = ''.join((random.choice(chars)) for x in range(StringSize))
+    text_file.write(s + '\n')
+    text_file.write("Expected Output:\n")
+    words = re.findall("[a-zA-Z]+", s)
+    words.sort()
+    for w in words:
+        text_file.write(w+'\n')
+    text_file.write('\n')
+    ListSize+=1
+
+text_file.close()
